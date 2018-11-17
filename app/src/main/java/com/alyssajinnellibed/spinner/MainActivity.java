@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
-import android.widget.Spinner;
 
 
 public class MainActivity extends AppCompatActivity  {
@@ -64,7 +62,7 @@ public class MainActivity extends AppCompatActivity  {
         appCompatButtonSpinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent spin = new Intent(getApplicationContext(), Spinner.class);
+                Intent spin = new Intent(getApplicationContext(), FoodSpinner.class);
                 startActivity(spin);
             }
         });

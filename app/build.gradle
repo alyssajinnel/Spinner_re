@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
 
     defaultConfig {
-        applicationId "com.delaroystudios.sqliterecyclerview"
+        applicationId "com.alyssajinnellibed.spinner"
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
