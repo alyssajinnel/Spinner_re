@@ -4,7 +4,7 @@
     android:id="@+id/nestedScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@drawable/bg3"
     android:paddingBottom="20dp"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
@@ -15,100 +15,76 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.AppCompatImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/logo" />
-
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/textInputLayoutBeneficiaryName"
+            android:id="@+id/textInputLayoutLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/textInputEditTextBeneficiaryName"
+                android:id="@+id/textInputEditTextLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_name"
+                android:hint="Location"
                 android:inputType="text"
                 android:maxLines="1"
-                android:textColorHint="#FFF"
-                android:textColor="#FFF" />
+                android:textColor="#FFF"
+                android:textColorHint="#FFF" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/textInputLayoutBeneficiaryId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp">
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/textInputEditTextBeneficiaryId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/hint_id"
-                android:inputType="number"
-                android:maxLines="1"
-                android:textColorHint="#FFF"
-                android:textColor="#FFF" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/textInputLayoutBeneficiaryEmail"
+            android:id="@+id/textInputLayoutType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/textInputEditTextBeneficiaryEmail"
+                android:id="@+id/textInputEditTextType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_email"
+                android:hint="Category"
                 android:inputType="text"
                 android:maxLines="1"
-                android:textColorHint="#FFF"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textColorHint="#FFF" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/textInputLayoutBeneficiaryAddress"
+            android:id="@+id/textInputLayoutDinerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/textInputEditTextBeneficiaryAddress"
+                android:id="@+id/textInputEditTextDinerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/beneficiaryaddress"
+                android:hint="Diner"
                 android:inputType="text"
                 android:maxLines="1"
-                android:textColorHint="#FFF"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textColorHint="#FFF" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/textInputLayoutBeneficiaryCountry"
+            android:id="@+id/textInputLayoutPriceRange"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/textInputEditTextBeneficiaryCountry"
+                android:id="@+id/textInputEditTextPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/beneficiarycountry"
+                android:hint="PriceRange"
                 android:inputType="text"
                 android:maxLines="1"
-                android:textColorHint="#FFF"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textColorHint="#FFF" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/appCompatButtonRegister"
+            android:id="@+id/appCompatButtonAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -116,13 +92,38 @@
             android:text="@string/register_benef" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/appCompatTextViewBenefList"
+            android:id="@+id/appCompatTextViewSave"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:gravity="center"
+            android:onClick="Save"
+            android:text="Save"
             android:textColor="#FFF"
-            android:text="@string/show_list_benef"
             android:textSize="16dp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/appCompatTextViewClear"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:onClick="clear"
+            android:text="Clear"
+            android:textColor="#FFF"
+            android:textSize="16dp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/appCompatTextViewRetrieve"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:onClick="Get"
+            android:text="Retrieve"
+            android:textColor="#FFF"
+            android:textSize="16dp" />
+
+
     </android.support.v7.widget.LinearLayoutCompat>
 </android.support.v4.widget.NestedScrollView>

@@ -7,7 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.alyssajinnellibed.spinner.model.Beneficiary;
+import com.alyssajinnellibed.spinner.model.Diners;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,23 +21,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 2;
 
     // Database Name
-    private static final String DATABASE_NAME = "BeneficiaryManager.db";
-
+    //private static final String DATABASE_NAME = "BeneficiaryManager.db";
+    private static final String DATABASE_NAME = "DinerManagerr.db";
+    
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        final String SQL_CREATE_FAVORITE_TABLE = "CREATE TABLE " + BeneficiaryContract.BeneficiaryEntry.TABLE_NAME + " (" +
-                BeneficiaryContract.BeneficiaryEntry._ID + " INTEGER NOT NULL," +
-                BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_NAME + " TEXT NOT NULL, " +
-                BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_EMAIL + " TEXT NOT NULL, " +
-                BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_ADDRESS + " TEXT NOT NULL, " +
-                BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_COUNTRY + " TEXT NOT NULL " +
+        final String SQL_CREATE_FAVORITE_TABLE = "CREATE TABLE " + DinerContract.DinerEntry.TABLE_NAME + " (" +
+                DinerContract.DinerEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                DinerContract.DinerEntry.COLUMN_DINER_NAME + " TEXT NOT NULL, " +
+                DinerContract.DinerEntry.COLUMN_DINER_EMAIL + " TEXT NOT NULL, " +
+                DinerContract.DinerEntry.COLUMN_DINER_ADDRESS + " TEXT NOT NULL, " +
+                DinerContract.DinerEntry.COLUMN_DINER_COUNTRY + " TEXT NOT NULL " +
                 "); ";
 
         sqLiteDatabase.execSQL(SQL_CREATE_FAVORITE_TABLE);
     }
     //drop beneficiary table
-    private String DROP_BENEFICIARY_TABLE = "DROP TABLE IF EXISTS " + BeneficiaryContract.BeneficiaryEntry.TABLE_NAME;
+    private String DROP_BENEFICIARY_TABLE = "DROP TABLE IF EXISTS " + DinerContract.DinerEntry.TABLE_NAME;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -74,17 +75,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Method to create beneficiary records
 
-    public void addBeneficiary(Beneficiary beneficiary) {
+    public void addBeneficiary(Diners diners) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(BeneficiaryContract.BeneficiaryEntry._ID, beneficiary.getId());
-        values.put(BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_NAME, beneficiary.getName());
-        values.put(BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_EMAIL, beneficiary.getEmail());
-        values.put(BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_ADDRESS, beneficiary.getAddress());
-        values.put(BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_COUNTRY, beneficiary.getCountry());
+        values.put(DinerContract.DinerEntry._ID, diners.getId());
+        values.put(DinerContract.DinerEntry.COLUMN_DINER_NAME, diners.getName());
+        values.put(DinerContract.DinerEntry.COLUMN_DINER_EMAIL, diners.getEmail());
+        values.put(DinerContract.DinerEntry.COLUMN_DINER_ADDRESS, diners.getAddress());
+        values.put(DinerContract.DinerEntry.COLUMN_DINER_COUNTRY, diners.getCountry());
 
-        db.insert(BeneficiaryContract.BeneficiaryEntry.TABLE_NAME, null, values);
+        db.insert(DinerContract.DinerEntry.TABLE_NAME, null, values);
         db.close();
     }
 
@@ -92,12 +93,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // array of columns to fetch
         String[] columns = {
-                BeneficiaryContract.BeneficiaryEntry._ID
+                DinerContract.DinerEntry._ID
         };
         SQLiteDatabase db = this.getReadableDatabase();
 
         // selection criteria
-        String selection = BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_EMAIL + " = ?";
+        String selection = DinerContract.DinerEntry.COLUMN_DINER_EMAIL + " = ?";
 
         // selection argument
         String[] selectionArgs = {email};
@@ -108,7 +109,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
          * SQL query equivalent to this query function is
          * SELECT user_id FROM user WHERE user_email = 'jack@androidtutorialshub.com';
          */
-        Cursor cursor = db.query(BeneficiaryContract.BeneficiaryEntry.TABLE_NAME, //Table to query
+        Cursor cursor = db.query(DinerContract.DinerEntry.TABLE_NAME, //Table to query
                 columns,                    //columns to return
                 selection,                  //columns for the WHERE clause
                 selectionArgs,              //The values for the WHERE clause
@@ -130,24 +131,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public List<Beneficiary> getAllBeneficiary() {
+    public List<Diners> getAllDiners() {
         // array of columns to fetch
         String[] columns = {
-                BeneficiaryContract.BeneficiaryEntry._ID,
-                BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_NAME,
-                BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_EMAIL,
-                BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_ADDRESS,
-                BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_COUNTRY
+                DinerContract.DinerEntry._ID,
+                DinerContract.DinerEntry.COLUMN_DINER_NAME,
+                DinerContract.DinerEntry.COLUMN_DINER_EMAIL,
+                DinerContract.DinerEntry.COLUMN_DINER_ADDRESS,
+                DinerContract.DinerEntry.COLUMN_DINER_COUNTRY
         };
         // sorting orders
         String sortOrder =
-                BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_NAME + " ASC";
-        List<Beneficiary> beneficiaryList = new ArrayList<Beneficiary>();
+                DinerContract.DinerEntry.COLUMN_DINER_NAME + " ASC";
+        List<Diners> dinersList = new ArrayList<Diners>();
 
         SQLiteDatabase db = this.getReadableDatabase();
 
 
-        Cursor cursor = db.query(BeneficiaryContract.BeneficiaryEntry.TABLE_NAME, //Table to query
+        Cursor cursor = db.query(DinerContract.DinerEntry.TABLE_NAME, //Table to query
                 columns,    //columns to return
                 null,        //columns for the WHERE clause
                 null,        //The values for the WHERE clause
@@ -159,21 +160,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Traversing through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                Beneficiary beneficiary = new Beneficiary();
-                beneficiary.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(BeneficiaryContract.BeneficiaryEntry._ID))));
-                beneficiary.setName(cursor.getString(cursor.getColumnIndex(BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_NAME)));
-                beneficiary.setEmail(cursor.getString(cursor.getColumnIndex(BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_EMAIL)));
-                beneficiary.setAddress(cursor.getString(cursor.getColumnIndex(BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_ADDRESS)));
-                beneficiary.setCountry(cursor.getString(cursor.getColumnIndex(BeneficiaryContract.BeneficiaryEntry.COLUMN_BENEFICIARY_COUNTRY)));
+                Diners diners = new Diners();
+                diners.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry._ID))));
+                diners.setName(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry.COLUMN_DINER_NAME)));
+                diners.setEmail(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry.COLUMN_DINER_EMAIL)));
+                diners.setAddress(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry.COLUMN_DINER_ADDRESS)));
+                diners.setCountry(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry.COLUMN_DINER_COUNTRY)));
                 // Adding user record to list
-                beneficiaryList.add(beneficiary);
+                dinersList.add(diners);
             } while (cursor.moveToNext());
         }
         cursor.close();
         db.close();
 
         // return user list
-        return beneficiaryList;
+        return dinersList;
     }
 
 }

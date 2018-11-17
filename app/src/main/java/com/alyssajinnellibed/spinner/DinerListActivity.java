@@ -11,31 +11,30 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
-import com.alyssajinnellibed.spinner.adapter.BeneficiaryRecyclerAdapter;
-import com.alyssajinnellibed.spinner.model.Beneficiary;
+import com.alyssajinnellibed.spinner.adapter.DinerRecyclerAdapter;
+import com.alyssajinnellibed.spinner.model.Diners;
 import com.alyssajinnellibed.spinner.sql.DatabaseHelper;
 
 import java.util.ArrayList;
 
-public class BeneficiaryListActivity extends AppCompatActivity {
+public class DinerListActivity extends AppCompatActivity {
 
-    private AppCompatActivity activity = BeneficiaryListActivity.this;
-    Context context = BeneficiaryListActivity.this;
-    private RecyclerView recyclerViewBeneficiary;
-    private ArrayList<Beneficiary> listBeneficiary;
-    private BeneficiaryRecyclerAdapter beneficiaryRecyclerAdapter;
+    private AppCompatActivity activity = DinerListActivity.this;
+    Context context = DinerListActivity.this;
+    private RecyclerView recyclerViewDiner;
+    private ArrayList<Diners> listDiners;
+    private DinerRecyclerAdapter dinerRecyclerAdapter;
     private DatabaseHelper databaseHelper;
     SearchView searchBox;
-    private ArrayList<Beneficiary> filteredList;
+    private ArrayList<Diners> filteredList;
 
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(com.alyssajinnellibed.spinner.R.layout.activity_beneficiary_list);
+        setContentView(com.alyssajinnellibed.spinner.R.layout.activity_diner_list);
         Toolbar toolbar = (Toolbar) findViewById(com.alyssajinnellibed.spinner.R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -56,7 +55,7 @@ public class BeneficiaryListActivity extends AppCompatActivity {
 
         }else{
 
-            Toast.makeText(this, "No API Data", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "No API Data", Toast.LENGTH_SHORT).show();
 
         }
 
@@ -68,21 +67,21 @@ public class BeneficiaryListActivity extends AppCompatActivity {
      * This method is to initialize views
      */
     private void initViews() {
-        recyclerViewBeneficiary = (RecyclerView) findViewById(com.alyssajinnellibed.spinner.R.id.recyclerViewBeneficiary);
+        recyclerViewDiner = (RecyclerView) findViewById(com.alyssajinnellibed.spinner.R.id.recyclerViewDiner);
     }
 
     /**
      * This method is to initialize objects to be used
      */
     private void initObjects() {
-        listBeneficiary = new ArrayList<>();
-        beneficiaryRecyclerAdapter = new BeneficiaryRecyclerAdapter(listBeneficiary, this);
+        listDiners = new ArrayList<>();
+        dinerRecyclerAdapter = new DinerRecyclerAdapter(listDiners, this);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerViewBeneficiary.setLayoutManager(mLayoutManager);
-        recyclerViewBeneficiary.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewBeneficiary.setHasFixedSize(true);
-        recyclerViewBeneficiary.setAdapter(beneficiaryRecyclerAdapter);
+        recyclerViewDiner.setLayoutManager(mLayoutManager);
+        recyclerViewDiner.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewDiner.setHasFixedSize(true);
+        recyclerViewDiner.setAdapter(dinerRecyclerAdapter);
         databaseHelper = new DatabaseHelper(activity);
 
         getDataFromSQLite();
@@ -101,8 +100,8 @@ public class BeneficiaryListActivity extends AppCompatActivity {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-                listBeneficiary.clear();
-                listBeneficiary.addAll(databaseHelper. getAllBeneficiary());
+                listDiners.clear();
+                listDiners.addAll(databaseHelper.getAllDiners());
 
                 return null;
             }
@@ -110,7 +109,7 @@ public class BeneficiaryListActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                beneficiaryRecyclerAdapter.notifyDataSetChanged();
+                dinerRecyclerAdapter.notifyDataSetChanged();
             }
         }.execute();
     }

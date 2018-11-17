@@ -1,9 +1,6 @@
 package com.alyssajinnellibed.spinner.model;
 
-/**
- * Created by delaroy on 5/10/17.
- */
-public class Beneficiary {
+public class Diners {
 
     private int id;
     private String name;

@@ -1,17 +1,18 @@
 <resources>
-    <string name="app_name">SqliteRecyclerview</string>
+    <string name="app_name">Foodget Spinner</string>
     <string name="hint_id">ID</string>
-    <string name="hint_email">Email</string>
+    <string name="hint_email">Type_of_Food</string>
     <string name="hint_password">Password</string>
     <string name="hint_confirm_password">Confirm Password</string>
-    <string name="beneficiaryaddress">Address</string>
-    <string name="beneficiarycountry">Country</string>
-    <string name="register_benef">Register Beneficiary</string>
-    <string name="show_list_benef">List of Registered Beneficiary</string>
+    <string name="beneficiaryaddress">Diner</string>
+    <string name="beneficiarycountry">Price_Range</string>
+    <string name="register_benef">Add Diner</string>
+    <string name="show_list_benef">List of Diners</string>
     <string name="error_email_exists">Email Already Exists</string>
     <string name="error_message_name">Enter Full Name</string>
     <string name="error_message_email">Enter Valid Email</string>
 
-    <string name="hint_name">Name</string>
+    <string name="hint_name">Location</string>
+    <string name="show_spinner">Foodget Spinner</string>
 
 </resources>

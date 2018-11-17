@@ -16,15 +16,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BeneficiaryListActivity"
+            android:name=".DinerListActivity"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
-            android:label="Beneficiary Details"
+            android:label="List of Diner"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <activity android:name=".Spinner"/>
+        <activity android:name=".AddDiner"/>
+
     </application>
 
 </manifest>
