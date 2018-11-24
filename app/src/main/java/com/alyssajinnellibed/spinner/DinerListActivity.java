@@ -42,14 +42,14 @@ public class DinerListActivity extends AppCompatActivity {
         initObjects();
 
         Intent intentThatStartedThisActivity = getIntent();
-        if (intentThatStartedThisActivity.hasExtra("NAME")) {
+        if (intentThatStartedThisActivity.hasExtra("LOCATION")) {
 
             //get all needed extras intent
 
             int id = getIntent().getExtras().getInt("ID");
-            String email = getIntent().getExtras().getString("EMAIL");
-            String address = getIntent().getExtras().getString("ADDRESS");
-            String country = getIntent().getExtras().getString("COUNTRY");
+            String category = getIntent().getExtras().getString("CATEGORY");
+            String dinername = getIntent().getExtras().getString("DINER NAME");
+            String pricerange = getIntent().getExtras().getString("PRICE RANGE");
 
 
 

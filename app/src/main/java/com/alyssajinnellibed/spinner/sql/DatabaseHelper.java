@@ -21,15 +21,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 2;
 
     // Database Name
-    //private static final String DATABASE_NAME = "BeneficiaryManager.db";
-    private static final String DATABASE_NAME = "DinerManagerr.db";
+
+    private static final String DATABASE_NAME = "DinerManager.db";
     
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
         final String SQL_CREATE_FAVORITE_TABLE = "CREATE TABLE " + DinerContract.DinerEntry.TABLE_NAME + " (" +
                 DinerContract.DinerEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                DinerContract.DinerEntry.COLUMN_CATEGORY + " TEXT NOT NULL, " +
+                DinerContract.DinerEntry.COLUMN_LOCATION + " TEXT NOT NULL, " +
                 DinerContract.DinerEntry.COLUMN_TYPE + " TEXT NOT NULL, " +
                 DinerContract.DinerEntry.COLUMN_DINERNAME + " TEXT NOT NULL, " +
                 DinerContract.DinerEntry.COLUMN_PRICERANGE + " TEXT NOT NULL " +
@@ -80,7 +80,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(DinerContract.DinerEntry._ID, diners.getId());
-        values.put(DinerContract.DinerEntry.COLUMN_CATEGORY, diners.getLocation());
+        values.put(DinerContract.DinerEntry.COLUMN_LOCATION, diners.getLocation());
         values.put(DinerContract.DinerEntry.COLUMN_TYPE, diners.getCategory());
         values.put(DinerContract.DinerEntry.COLUMN_DINERNAME, diners.getDinerName());
         values.put(DinerContract.DinerEntry.COLUMN_PRICERANGE, diners.getPriceRange());
@@ -89,60 +89,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public boolean checkUser(String email) {
-
-        // array of columns to fetch
-        String[] columns = {
-                DinerContract.DinerEntry._ID
-        };
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        // selection criteria
-        String selection = DinerContract.DinerEntry.COLUMN_TYPE + " = ?";
-
-        // selection argument
-        String[] selectionArgs = {email};
-
-        // query user table with condition
-        /**
-         * Here query function is used to fetch records from user table this function works like we use sql query.
-         * SQL query equivalent to this query function is
-         * SELECT user_id FROM user WHERE user_email = 'jack@androidtutorialshub.com';
-         */
-        Cursor cursor = db.query(DinerContract.DinerEntry.TABLE_NAME, //Table to query
-                columns,                    //columns to return
-                selection,                  //columns for the WHERE clause
-                selectionArgs,              //The values for the WHERE clause
-                null,                       //group the rows
-                null,                      //filter by row groups
-                null);                      //The sort order
-        int cursorCount = cursor.getCount();
-        cursor.close();
-        db.close();
-
-        if (cursorCount > 0) {
-            return true;
-        }
-
-        return false;
-    }
-
-
-
-
 
     public List<Diners> getAllDiners() {
         // array of columns to fetch
         String[] columns = {
                 DinerContract.DinerEntry._ID,
-                DinerContract.DinerEntry.COLUMN_CATEGORY,
+                DinerContract.DinerEntry.COLUMN_LOCATION,
                 DinerContract.DinerEntry.COLUMN_TYPE,
                 DinerContract.DinerEntry.COLUMN_DINERNAME,
                 DinerContract.DinerEntry.COLUMN_PRICERANGE
         };
         // sorting orders
         String sortOrder =
-                DinerContract.DinerEntry.COLUMN_CATEGORY + " ASC";
+        DinerContract.DinerEntry.COLUMN_LOCATION + " ASC";
         List<Diners> dinersList = new ArrayList<Diners>();
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -162,7 +121,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 Diners diners = new Diners();
                 diners.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry._ID))));
-                diners.setLocation(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry.COLUMN_CATEGORY)));
+                diners.setLocation(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry.COLUMN_LOCATION)));
                 diners.setCategory(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry.COLUMN_TYPE)));
                 diners.setDinerName(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry.COLUMN_DINERNAME)));
                 diners.setPriceRange(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry.COLUMN_PRICERANGE)));
