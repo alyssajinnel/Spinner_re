@@ -17,35 +17,35 @@ public class Diners {
         this.id = id;
     }
 
-    public String getName() {
+    public String getLocation() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setLocation(String name) {
         this.name = name;
     }
 
-    public String getEmail() {
+    public String getCategory() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setCategory(String email) {
         this.email = email;
     }
 
-    public String getAddress() {
+    public String getDinerName() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setDinerName(String address) {
         this.address = address;
     }
 
-    public String getCountry() {
+    public String getPriceRange() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setPriceRange(String country) {
         this.country = country;
     }
 }

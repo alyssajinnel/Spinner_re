@@ -29,10 +29,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         final String SQL_CREATE_FAVORITE_TABLE = "CREATE TABLE " + DinerContract.DinerEntry.TABLE_NAME + " (" +
                 DinerContract.DinerEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                DinerContract.DinerEntry.COLUMN_DINER_NAME + " TEXT NOT NULL, " +
-                DinerContract.DinerEntry.COLUMN_DINER_EMAIL + " TEXT NOT NULL, " +
-                DinerContract.DinerEntry.COLUMN_DINER_ADDRESS + " TEXT NOT NULL, " +
-                DinerContract.DinerEntry.COLUMN_DINER_COUNTRY + " TEXT NOT NULL " +
+                DinerContract.DinerEntry.COLUMN_CATEGORY + " TEXT NOT NULL, " +
+                DinerContract.DinerEntry.COLUMN_TYPE + " TEXT NOT NULL, " +
+                DinerContract.DinerEntry.COLUMN_DINERNAME + " TEXT NOT NULL, " +
+                DinerContract.DinerEntry.COLUMN_PRICERANGE + " TEXT NOT NULL " +
                 "); ";
 
         sqLiteDatabase.execSQL(SQL_CREATE_FAVORITE_TABLE);
@@ -75,15 +75,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Method to create beneficiary records
 
-    public void addBeneficiary(Diners diners) {
+    public void addDiners(Diners diners) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(DinerContract.DinerEntry._ID, diners.getId());
-        values.put(DinerContract.DinerEntry.COLUMN_DINER_NAME, diners.getName());
-        values.put(DinerContract.DinerEntry.COLUMN_DINER_EMAIL, diners.getEmail());
-        values.put(DinerContract.DinerEntry.COLUMN_DINER_ADDRESS, diners.getAddress());
-        values.put(DinerContract.DinerEntry.COLUMN_DINER_COUNTRY, diners.getCountry());
+        values.put(DinerContract.DinerEntry.COLUMN_CATEGORY, diners.getLocation());
+        values.put(DinerContract.DinerEntry.COLUMN_TYPE, diners.getCategory());
+        values.put(DinerContract.DinerEntry.COLUMN_DINERNAME, diners.getDinerName());
+        values.put(DinerContract.DinerEntry.COLUMN_PRICERANGE, diners.getPriceRange());
 
         db.insert(DinerContract.DinerEntry.TABLE_NAME, null, values);
         db.close();
@@ -98,7 +98,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // selection criteria
-        String selection = DinerContract.DinerEntry.COLUMN_DINER_EMAIL + " = ?";
+        String selection = DinerContract.DinerEntry.COLUMN_TYPE + " = ?";
 
         // selection argument
         String[] selectionArgs = {email};
@@ -135,14 +135,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // array of columns to fetch
         String[] columns = {
                 DinerContract.DinerEntry._ID,
-                DinerContract.DinerEntry.COLUMN_DINER_NAME,
-                DinerContract.DinerEntry.COLUMN_DINER_EMAIL,
-                DinerContract.DinerEntry.COLUMN_DINER_ADDRESS,
-                DinerContract.DinerEntry.COLUMN_DINER_COUNTRY
+                DinerContract.DinerEntry.COLUMN_CATEGORY,
+                DinerContract.DinerEntry.COLUMN_TYPE,
+                DinerContract.DinerEntry.COLUMN_DINERNAME,
+                DinerContract.DinerEntry.COLUMN_PRICERANGE
         };
         // sorting orders
         String sortOrder =
-                DinerContract.DinerEntry.COLUMN_DINER_NAME + " ASC";
+                DinerContract.DinerEntry.COLUMN_CATEGORY + " ASC";
         List<Diners> dinersList = new ArrayList<Diners>();
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -162,10 +162,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 Diners diners = new Diners();
                 diners.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry._ID))));
-                diners.setName(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry.COLUMN_DINER_NAME)));
-                diners.setEmail(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry.COLUMN_DINER_EMAIL)));
-                diners.setAddress(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry.COLUMN_DINER_ADDRESS)));
-                diners.setCountry(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry.COLUMN_DINER_COUNTRY)));
+                diners.setLocation(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry.COLUMN_CATEGORY)));
+                diners.setCategory(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry.COLUMN_TYPE)));
+                diners.setDinerName(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry.COLUMN_DINERNAME)));
+                diners.setPriceRange(cursor.getString(cursor.getColumnIndex(DinerContract.DinerEntry.COLUMN_PRICERANGE)));
                 // Adding user record to list
                 dinersList.add(diners);
             } while (cursor.moveToNext());

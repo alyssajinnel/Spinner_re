@@ -63,10 +63,10 @@ public class DinerRecyclerAdapter extends RecyclerView.Adapter<DinerRecyclerAdap
 
     @Override
     public void onBindViewHolder(final BeneficiaryViewHolder holder, int position) {
-        holder.textViewLocation.setText(listDiners.get(position).getName());
-        holder.textViewType.setText(listDiners.get(position).getEmail());
-        holder.textViewDinerName.setText(listDiners.get(position).getAddress());
-        holder.textViewPrice.setText(listDiners.get(position).getCountry());
+        holder.textViewLocation.setText(listDiners.get(position).getLocation());
+        holder.textViewType.setText(listDiners.get(position).getCategory());
+        holder.textViewDinerName.setText(listDiners.get(position).getDinerName());
+        holder.textViewPrice.setText(listDiners.get(position).getPriceRange());
 
 
     }
